@@ -1,0 +1,19 @@
+.element__btn-like {
+  background: transparent url(../../../images/btn-like.svg) center center
+    no-repeat;
+  width: 22px;
+  height: 19px;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+.element__btn-like:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.element__btn-like:active {
+  opacity: 1;
+  background-image: url(../../../images/btn-like_active.svg);
+}
