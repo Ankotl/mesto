@@ -1,0 +1,6 @@
+.profile {
+  max-width: calc(100% - 2 * 200px);
+  display: flex;
+  margin: 0 auto;
+  padding: 40px 0 51px;
+}
