@@ -3,3 +3,9 @@
   flex-wrap: wrap;
   max-width: 336px;
 }
+
+@media screen and (max-width: 1023px) {
+  .profile__info {
+    max-width: 100%;
+  }
+}
