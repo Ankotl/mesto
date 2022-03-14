@@ -11,7 +11,7 @@
   transition: all 0.2s linear;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 767px) {
   .profile__name {
     margin: 0;
     font-size: 27px;

@@ -6,7 +6,13 @@
 
 @media screen and (max-width: 1023px) {
   .profile__info {
-    max-width: 100%;
     justify-content: center;
+    align-content: center;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .profile__info {
+    max-width: 100%;
   }
 }
