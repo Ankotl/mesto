@@ -25,6 +25,7 @@
               class="profile__btn-edit"
               type="button"
               title="Редактировать профиль"
+              aria-label="Редактировать профиль"
             ></button>
             <p class="profile__about">Исследователь океана</p>
           </div>
@@ -32,111 +33,118 @@
             class="profile__btn-add"
             type="button"
             title="Добавить фото"
+            aria-label="Добавить фото"
           ></button>
         </section>
         <section class="elements">
           <ul class="elements__list">
             <li class="element">
-              <figure class="element__figure">
+              <div class="element__figure">
                 <img
                   class="element__image"
                   src="./images/karachaevsk.jpg"
                   alt="г. Карачевск"
                 />
-                <figcaption class="element__info">
+                <div class="element__info">
                   <h2 class="element__caption">Карачаевск</h2>
                   <button
                     class="element__btn-like"
                     type="button"
                     title="Нравится"
+                    aria-label="Нравиться"
                   ></button>
-                </figcaption>
-              </figure>
+                </div>
+              </div>
             </li>
             <li class="element">
-              <figure class="element__figure">
+              <div class="element__figure">
                 <img
                   class="element__image"
                   src="./images/elbrus.jpg"
                   alt="Гора Эльбрус"
                 />
-                <figcaption class="element__info">
+                <div class="element__info">
                   <h2 class="element__caption">Гора Эльбрус</h2>
                   <button
                     class="element__btn-like"
                     type="button"
                     title="Нравится"
+                    aria-label="Нравиться"
                   ></button>
-                </figcaption>
-              </figure>
+                </div>
+              </div>
             </li>
             <li class="element">
-              <figure class="element__figure">
+              <div class="element__figure">
                 <img
                   class="element__image"
                   src="./images/dombai.jpg"
                   alt="Домбай"
                 />
-                <figcaption class="element__info">
+                <div class="element__info">
                   <h2 class="element__caption">Домбай</h2>
                   <button
                     class="element__btn-like"
                     type="button"
                     title="Нравится"
+                    aria-label="Нравиться"
                   ></button>
-                </figcaption>
-              </figure>
+                </div>
+              </div>
             </li>
             <li class="element">
-              <figure class="element__figure">
+              <div class="element__figure">
                 <img
                   class="element__image"
                   src="./images/elbrus.jpg"
                   alt="Гора Эльбрус"
                 />
-                <figcaption class="element__info">
+                <div class="element__info">
                   <h2 class="element__caption">Гора Эльбрус</h2>
                   <button
                     class="element__btn-like"
                     type="button"
                     title="Нравится"
+                    aria-label="Нравиться"
                   ></button>
-                </figcaption>
-              </figure>
+                </div>
+              </div>
             </li>
             <li class="element">
-              <figure class="element__figure">
+              <div class="element__figure">
                 <img
                   class="element__image"
                   src="./images/dombai.jpg"
                   alt="Домбай"
                 />
-                <figcaption class="element__info">
+                <div class="element__info">
                   <h2 class="element__caption">Домбай</h2>
                   <button
                     class="element__btn-like"
                     type="button"
                     title="Нравится"
+                    aria-label="Нравиться"
                   ></button>
-                </figcaption>
-              </figure>
+                </div>
+              </div>
             </li>
             <li class="element">
-              <figure class="element__figure">
+              <div class="element__figure">
                 <img
                   class="element__image"
                   src="./images/karachaevsk.jpg"
                   alt="г. Карачевск"
                 />
-                <figcaption class="element__info">
+                <div class="element__info">
                   <h2 class="element__caption">Карачаево-Черкесия</h2>
                   <button
                     class="element__btn-like"
                     type="button"
                     title="Нравится"
+                    aria-label="Нравиться"
                   ></button>
-                </figcaption>
-              </figure>
+                </div>
+              </div>
             </li>
           </ul>
         </section>
@@ -147,27 +155,39 @@
     </div>
     <section class="popup">
       <div class="popup__container">
-        <form class="popup__form">
+        <form class="popup__form" name="editFormProfile">
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__fieldset">
             <input
               class="popup__input"
               type="text"
               placeholder="Имя"
+              name="inputName"
               required=""
             />
             <input
               class="popup__input"
               type="text"
               placeholder="О себе"
+              name="inputAbout"
               required=""
             />
-            <button class="popup__btn-save" type="submit" title="Сохранить">
+            <button
+              class="popup__btn-save"
+              type="submit"
+              title="Сохранить"
+              aria-label="Сохранить"
+            >
               Сохранить
             </button>
           </fieldset>
         </form>
-        <button class="popup__btn-close" type="button" title="Закрыть"></button>
+        <button
+          class="popup__btn-close"
+          type="button"
+          title="Закрыть"
+          aria-label="Закрыть"
+        ></button>
       </div>
     </section>
     <script defer src="./scripts/index.js"></script>

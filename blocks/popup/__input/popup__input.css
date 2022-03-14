@@ -3,7 +3,7 @@
   height: 26px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin-bottom: 48px;
+  margin-bottom: 30px;
   padding: 0;
   color: black;
   font-size: 14px;
@@ -11,12 +11,12 @@
   line-height: 17px;
 }
 
-.popup__input:first-child {
-  margin-bottom: 30px;
+.popup__input:last-of-type {
+  margin-bottom: 48px;
 }
 
 @media screen and (max-width: 767px) {
-  .popup__input {
+  .popup__input:last-of-type {
     margin-bottom: 45px;
   }
 }

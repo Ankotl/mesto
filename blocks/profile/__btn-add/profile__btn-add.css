@@ -5,6 +5,7 @@
   margin-left: auto;
   border: 2px solid #fff;
   padding: 0;
+  transition: all 0.2s linear;
 }
 
 .profile__btn-add:hover {

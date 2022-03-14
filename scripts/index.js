@@ -2,10 +2,11 @@ let btnPopupEdit = document.querySelector(".profile__btn-edit");
 let btnPopupClose = document.querySelector(".popup__btn-close");
 let popup = document.querySelector(".popup");
 let popupInput = document.querySelectorAll(".popup__input");
-let [inputName, inputAbout] = popupInput;
+let inputName = document.querySelector("[name=inputName]");
+let inputAbout = document.querySelector("[name=inputAbout]");
 let profileName = document.querySelector(".profile__name");
 let profileAbout = document.querySelector(".profile__about");
-let popupForm = document.querySelector(".popup__container");
+let popupForm = document.querySelector("[name=editFormProfile]");
 
 function popupOpen() {
   inputName.value = profileName.textContent;
