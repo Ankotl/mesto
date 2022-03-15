@@ -25,12 +25,6 @@ function formSubmitHandler(evt) {
   popupClose();
 }
 
-function popupCloseBackground(evt) {
-  evt.stopPropagation();
-}
-
 btnPopupEdit.addEventListener("click", popupOpen);
 btnPopupClose.addEventListener("click", popupClose);
-popupForm.addEventListener("click", popupCloseBackground);
 popupForm.addEventListener("submit", formSubmitHandler);
-popup.addEventListener("click", popupClose);
