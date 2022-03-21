@@ -153,7 +153,7 @@
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
       </footer>
     </div>
-    <section class="popup">
+    <section class="popup popup_edit">
       <div class="popup__container">
         <form class="popup__form" name="editFormProfile">
           <h2 class="popup__title">Редактировать профиль</h2>
@@ -179,6 +179,43 @@
               aria-label="Сохранить"
             >
               Сохранить
+            </button>
+          </fieldset>
+        </form>
+        <button
+          class="popup__btn-close"
+          type="button"
+          title="Закрыть"
+          aria-label="Закрыть"
+        ></button>
+      </div>
+    </section>
+    <section class="popup popup_add">
+      <div class="popup__container">
+        <form class="popup__form" name="addFormElement">
+          <h2 class="popup__title">Новое место</h2>
+          <fieldset class="popup__fieldset">
+            <input
+              class="popup__input"
+              type="text"
+              placeholder="Название"
+              name="inputTitle"
+              required=""
+            />
+            <input
+              class="popup__input"
+              type="text"
+              placeholder="Ссылка на картинку"
+              name="inputLink"
+              required=""
+            />
+            <button
+              class="popup__btn-save"
+              type="submit"
+              title="Создать"
+              aria-label="Создать"
+            >
+              Создать
             </button>
           </fieldset>
         </form>
