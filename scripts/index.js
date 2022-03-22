@@ -1,15 +1,20 @@
-let btnPopupEdit = document.querySelector(".profile__btn-edit");
-let btnPopupClose = document.querySelectorAll(".popup__btn-close");
-let btnPopupAdd = document.querySelector(".profile__btn-add");
-let popup = document.querySelectorAll(".popup");
-let popupEdit = document.querySelector(".popup_edit");
-let popupAdd = document.querySelector(".popup_add");
-let popupInput = document.querySelectorAll(".popup__input");
-let inputName = document.querySelector("[name=inputName]");
-let inputAbout = document.querySelector("[name=inputAbout]");
-let profileName = document.querySelector(".profile__name");
-let profileAbout = document.querySelector(".profile__about");
-let popupForm = document.querySelector("[name=editFormProfile]");
+const btnPopupEdit = document.querySelector(".profile__btn-edit");
+
+const btnPopupAdd = document.querySelector(".profile__btn-add");
+const popup = document.querySelector(".popup");
+
+const popupEdit = document.querySelector(".popup_edit");
+const btnPopupEditClose = popupEdit.querySelector(".popup__btn-close");
+const inputName = document.querySelector("[name=inputName]");
+const inputAbout = document.querySelector("[name=inputAbout]");
+const profileName = document.querySelector(".profile__name");
+const profileAbout = document.querySelector(".profile__about");
+const popupForm = document.querySelector("[name=editFormProfile]");
+
+const popupAdd = document.querySelector(".popup_add");
+const btnPopupAddClose = popupAdd.querySelector(".popup__btn-close");
+
+const elementList = document.querySelector(".elements__list");
 
 const initialCards = [
   {
@@ -48,18 +53,47 @@ function popupAddOpen() {
   popupAdd.classList.add("popup_opened");
 }
 
-function popupClose() {
-  popup.forEach((item) => item.classList.remove("popup_opened"));
+function popupClose(elem) {
+  elem.classList.remove("popup_opened");
 }
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileAbout.textContent = inputAbout.value;
-  popupClose();
+  popupClose(popupEdit);
 }
+
+function handlerLike(evt) {
+  evt.target.classList.toggle("element__btn-like_active");
+}
+
+function handlerTrash(evt) {
+  evt.target.closest(".element").remove();
+}
+
+function addElement(elem) {
+  const elementTemplate = document.querySelector("#element").content;
+  const element = elementTemplate.querySelector(".element").cloneNode(true);
+
+  element
+    .querySelector(".element__btn-like")
+    .addEventListener("click", handlerLike);
+
+  element
+    .querySelector(".element__btn-delete")
+    .addEventListener("click", handlerTrash);
+
+  element.querySelector(".element__image").src = elem.link;
+  element.querySelector(".element__caption").textContent = elem.name;
+
+  elementList.append(element);
+}
+
+initialCards.forEach((elem) => addElement(elem));
 
 btnPopupAdd.addEventListener("click", popupAddOpen);
 btnPopupEdit.addEventListener("click", popupEditOpen);
-btnPopupClose.forEach((item) => item.addEventListener("click", popupClose));
+btnPopupEditClose.addEventListener("click", () => popupClose(popupEdit));
+btnPopupAddClose.addEventListener("click", () => popupClose(popupAdd));
 popupForm.addEventListener("submit", formSubmitHandler);
