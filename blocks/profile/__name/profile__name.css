@@ -8,6 +8,7 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 87.15%;
+  min-width: 80%;
   transition: all 0.2s linear;
 }
 
@@ -17,6 +18,7 @@
     font-size: 27px;
     line-height: 1.22;
     max-width: 80%;
+    min-width: 75%;
     text-align: center;
   }
 }

@@ -24,49 +24,20 @@ const popupImage = popupPicture.querySelector(".popup__image");
 const popupCaption = popupPicture.querySelector(".popup__caption");
 const btnPopupPictureClose = popupPicture.querySelector(".popup__btn-close");
 
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+function popupOpen(popup) {
+  popup.classList.add("popup_opened");
+}
 
 function popupEditOpen() {
   inputName.value = profileName.textContent;
   inputAbout.value = profileAbout.textContent;
-  popupEdit.classList.add("popup_opened");
-}
-
-function popupAddOpen() {
-  popupAdd.classList.add("popup_opened");
+  popupOpen(popupEdit);
 }
 
 function popupPictureOpen(evt) {
-  popupPicture.classList.add("popup_opened");
+  popupOpen(popupPicture);
   popupImage.src = evt.target.src;
-  popupCaption.textContent = evt.target
-    .closest(".element")
-    .querySelector(".element__caption").textContent;
+  popupCaption.textContent = evt.target.alt;
 }
 
 function popupClose(elem) {
@@ -117,6 +88,7 @@ function createElement(elem) {
     .addEventListener("click", popupPictureOpen);
 
   element.querySelector(".element__image").src = elem.link;
+  element.querySelector(".element__image").alt = elem.name;
   element.querySelector(".element__caption").textContent = elem.name;
 
   return element;
@@ -124,7 +96,7 @@ function createElement(elem) {
 
 initialCards.forEach((elem) => elementList.prepend(createElement(elem)));
 
-btnPopupAdd.addEventListener("click", popupAddOpen);
+btnPopupAdd.addEventListener("click", () => popupOpen(popupAdd));
 btnPopupEdit.addEventListener("click", popupEditOpen);
 btnPopupEditClose.addEventListener("click", () => popupClose(popupEdit));
 btnPopupAddClose.addEventListener("click", () => popupClose(popupAdd));
