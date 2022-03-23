@@ -19,6 +19,10 @@ const inputLink = popupAdd.querySelector("[name=inputLink]");
 
 const elementList = document.querySelector(".elements__list");
 
+const popupPicture = document.querySelector(".popup_picture");
+const popupImage = popupPicture.querySelector(".popup__image");
+const popupCaption = popupPicture.querySelector(".popup__caption");
+
 const initialCards = [
   {
     name: "Архыз",
@@ -54,6 +58,14 @@ function popupEditOpen() {
 
 function popupAddOpen() {
   popupAdd.classList.add("popup_opened");
+}
+
+function popupPictureOpen(evt) {
+  popupPicture.classList.add("popup_opened");
+  popupImage.src = evt.target.src;
+  popupCaption.textContent = evt.target
+    .closest(".element")
+    .querySelector(".element__caption").textContent;
 }
 
 function popupClose(elem) {
@@ -98,6 +110,10 @@ function addElement(elem) {
   element
     .querySelector(".element__btn-delete")
     .addEventListener("click", handlerTrash);
+
+  element
+    .querySelector(".element__image")
+    .addEventListener("click", popupPictureOpen);
 
   element.querySelector(".element__image").src = elem.link;
   element.querySelector(".element__caption").textContent = elem.name;
