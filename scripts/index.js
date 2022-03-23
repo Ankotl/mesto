@@ -22,6 +22,7 @@ const elementList = document.querySelector(".elements__list");
 const popupPicture = document.querySelector(".popup_picture");
 const popupImage = popupPicture.querySelector(".popup__image");
 const popupCaption = popupPicture.querySelector(".popup__caption");
+const btnPopupPictureClose = popupPicture.querySelector(".popup__btn-close");
 
 const initialCards = [
   {
@@ -86,7 +87,7 @@ function formAddElementHandler(evt) {
     link: inputLink.value,
   };
   popupClose(popupAdd);
-  addElement(element);
+  elementList.prepend(createElement(element));
   inputLink.value = "";
   inputTitle.value = "";
 }
@@ -99,7 +100,7 @@ function handlerTrash(evt) {
   evt.target.closest(".element").remove();
 }
 
-function addElement(elem) {
+function createElement(elem) {
   const elementTemplate = document.querySelector("#element").content;
   const element = elementTemplate.querySelector(".element").cloneNode(true);
 
@@ -118,14 +119,15 @@ function addElement(elem) {
   element.querySelector(".element__image").src = elem.link;
   element.querySelector(".element__caption").textContent = elem.name;
 
-  elementList.prepend(element);
+  return element;
 }
 
-initialCards.forEach((elem) => addElement(elem));
+initialCards.forEach((elem) => elementList.prepend(createElement(elem)));
 
 btnPopupAdd.addEventListener("click", popupAddOpen);
 btnPopupEdit.addEventListener("click", popupEditOpen);
 btnPopupEditClose.addEventListener("click", () => popupClose(popupEdit));
 btnPopupAddClose.addEventListener("click", () => popupClose(popupAdd));
+btnPopupPictureClose.addEventListener("click", () => popupClose(popupPicture));
 popupEditForm.addEventListener("submit", formSubmitHandler);
 popupAddForm.addEventListener("submit", formAddElementHandler);
