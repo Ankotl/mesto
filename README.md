@@ -1,11 +1,11 @@
-# Проект: Место. 4 практическая работа Яндекс.Практикум
+# Проект: Место. Яндекс.Практикум
 
 ### Стэк
 
-* HTML
-* CSS
-* Javascript
-* БЭМ
+- HTML
+- CSS
+- Javascript
+- БЭМ
 
 **О проекте**
 
@@ -13,16 +13,14 @@
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+- [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
 **GH-Pages**
 
-*Ссылка на сайт https://ankotl.github.io/mesto/index.html 
+\*Ссылка на сайт https://ankotl.github.io/mesto/index.html
 
 **В разработке**
 
-Возможность добавления новых фото и возможность лайкать понравившиеся картинки.
+Рефакторинг
 
-****
-
-
+---
