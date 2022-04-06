@@ -119,27 +119,15 @@ function createElement(elem) {
 }
 
 function resetForm() {
-  resetAddForm();
-  resetEditForm();
-}
-
-function resetAddForm() {
-  inputTitle.classList.remove("popup__input_type_error");
-  inputLink.classList.remove("popup__input_type_error");
-  inputTitleError.classList.remove("popup__error_visible");
-  inputTitleError.textContent = "";
-  inputLinkError.classList.remove("popup__error_visible");
-  inputLinkError.textContent = "";
-  popupAddForm.reset();
-}
-
-function resetEditForm() {
-  inputName.classList.remove("popup__input_type_error");
-  inputAbout.classList.remove("popup__input_type_error");
-  inputNameError.classList.remove("popup__error_visible");
-  inputNameError.textContent = "";
-  inputAboutError.classList.remove("popup__error_visible");
-  inputAboutError.textContent = "";
+  const errorInputList = Array.from(document.querySelectorAll(".popup__input"));
+  const errorList = Array.from(document.querySelectorAll(".popup__error"));
+  errorList.forEach((error) => {
+    error.textContent = "";
+    error.classList.remove("popup__error_visible");
+  });
+  errorInputList.forEach((element) => {
+    element.classList.remove("popup__input_type_error");
+  });
 }
 
 initialCards.forEach((elem) => elementList.prepend(createElement(elem)));
