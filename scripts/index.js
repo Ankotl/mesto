@@ -127,6 +127,7 @@ function resetForm() {
   });
   errorInputList.forEach((element) => {
     element.classList.remove("popup__input_type_error");
+    element.value = "";
   });
 }
 
