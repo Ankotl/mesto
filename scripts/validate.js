@@ -24,7 +24,7 @@ const setEventListeners = (formElement, obj) => {
   const buttonElement = formElement.querySelector(
     `.${obj.submitButtonSelector}`
   );
-  toggleButtonState(inputList, buttonElement, obj.inactiveButtonClass);
+  toggleButtonState(formElement, buttonElement, obj.inactiveButtonClass);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(
@@ -33,7 +33,7 @@ const setEventListeners = (formElement, obj) => {
         obj.errorClass,
         obj.inputErrorClass
       );
-      toggleButtonState(inputList, buttonElement, obj.inactiveButtonClass);
+      toggleButtonState(formElement, buttonElement, obj.inactiveButtonClass);
     });
   });
 };
@@ -82,20 +82,14 @@ const hideInputError = (
   errorElement.textContent = "";
 };
 
-const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
-  if (hasInvalidInput(inputList)) {
+const toggleButtonState = (formElement, buttonElement, inactiveButtonClass) => {
+  if (!formElement.checkValidity()) {
     buttonElement.classList.add(`${inactiveButtonClass}`);
     buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(`${inactiveButtonClass}`);
     buttonElement.disabled = false;
   }
-};
-
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
 };
 
 enableValidation(validateObj);
