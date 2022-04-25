@@ -15,23 +15,26 @@ export default class Card {
   }
 
   _setEventListener() {
-    this._cardElement
-      .querySelector(".element__btn-like")
-      .addEventListener("click", (evt) => this._handlerLike(evt));
+    this._cardLike = this._cardElement.querySelector(".element__btn-like");
+
+    this._cardLike.addEventListener("click", () => this._handlerLike());
 
     this._cardElement
       .querySelector(".element__btn-delete")
-      .addEventListener("click", (evt) => this._handlerTrash(evt));
+      .addEventListener("click", () => this._handlerTrash());
 
-    this._cardImage.addEventListener("click", (evt) => popupPictureOpen(evt));
+    this._cardImage.addEventListener("click", () =>
+      popupPictureOpen(this._name, this._link)
+    );
   }
 
-  _handlerLike(evt) {
-    evt.target.classList.toggle("element__btn-like_active");
+  _handlerLike() {
+    this._cardLike.classList.toggle("element__btn-like_active");
   }
 
-  _handlerTrash(evt) {
-    evt.target.closest(".element").remove();
+  _handlerTrash() {
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 
   generateCard() {

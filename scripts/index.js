@@ -44,11 +44,11 @@ function popupEditOpen() {
   popupOpen(popupEdit);
 }
 
-export function popupPictureOpen(evt) {
+export function popupPictureOpen(name, link) {
   popupOpen(popupPicture);
-  popupImage.src = evt.target.src;
-  popupImage.alt = evt.target.alt;
-  popupCaption.textContent = evt.target.alt;
+  popupImage.src = link;
+  popupImage.alt = name;
+  popupCaption.textContent = name;
 }
 
 function popupClose(elem) {
@@ -79,7 +79,6 @@ function formAddElementHandler(evt) {
   };
   popupClose(popupAdd);
   elementList.prepend(createElement(element));
-  popupAddForm.reset();
   validateAddForm.toggleButtonState();
 }
 
@@ -88,27 +87,15 @@ function createElement(elem) {
   return card.generateCard();
 }
 
-function resetForm(popup) {
-  const errorInputList = Array.from(popup.querySelectorAll(".popup__input"));
-  const errorList = Array.from(popup.querySelectorAll(".popup__error"));
-  errorList.forEach((error) => {
-    error.textContent = "";
-    error.classList.remove("popup__error_visible");
-  });
-  errorInputList.forEach((element) => {
-    element.classList.remove("popup__input_type_error");
-    element.value = "";
-  });
-}
-
 initialCards.forEach((elem) => elementList.prepend(createElement(elem)));
 
 btnPopupAdd.addEventListener("click", () => {
-  resetForm(popupAdd);
+  popupAddForm.reset();
+  validateAddForm.resetValidation();
   popupOpen(popupAdd);
 });
 btnPopupEdit.addEventListener("click", () => {
-  resetForm(popupEdit);
+  validateEditForm.resetValidation();
   popupEditOpen();
 });
 popupEditForm.addEventListener("submit", formSubmitHandler);
