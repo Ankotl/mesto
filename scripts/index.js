@@ -83,7 +83,7 @@ function formAddElementHandler(evt) {
 }
 
 function createElement(elem) {
-  const card = new Card(elem, elementTemplate);
+  const card = new Card(elem, elementTemplate, popupPictureOpen);
   return card.generateCard();
 }
 

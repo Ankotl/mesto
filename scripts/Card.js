@@ -1,10 +1,9 @@
-import { popupPictureOpen } from "./index.js";
-
 export default class Card {
-  constructor(date, template) {
+  constructor(date, template, callback) {
     this._name = date.name;
     this._link = date.link;
     this._template = template;
+    this._callback = callback;
   }
 
   _getTemplate() {
@@ -24,7 +23,7 @@ export default class Card {
       .addEventListener("click", () => this._handlerTrash());
 
     this._cardImage.addEventListener("click", () =>
-      popupPictureOpen(this._name, this._link)
+      this._callback(this._name, this._link)
     );
   }
 
