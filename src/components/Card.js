@@ -22,9 +22,7 @@ export default class Card {
       .querySelector(".element__btn-delete")
       .addEventListener("click", () => this._handlerTrash());
 
-    this._cardImage.addEventListener("click", () =>
-      this._callback(this._name, this._link)
-    );
+    this._cardImage.addEventListener("click", this._callback);
   }
 
   _handlerLike() {
