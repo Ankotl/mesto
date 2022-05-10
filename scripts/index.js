@@ -1,5 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
 import { initialCards, validateObj } from "./initialData.js";
 
 const btnPopupEdit = document.querySelector(".profile__btn-edit");
@@ -78,16 +79,25 @@ function formAddElementHandler(evt) {
     link: inputLink.value,
   };
   popupClose(popupAdd);
-  elementList.prepend(createElement(element));
+  cardList.addItem(createElement(element));
   validateAddForm.toggleButtonState();
 }
+
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (elem) => {
+      const cardElement = createElement(elem);
+      cardList.addItem(cardElement);
+    },
+  },
+  elementList
+);
 
 function createElement(elem) {
   const card = new Card(elem, elementTemplate, popupPictureOpen);
   return card.generateCard();
 }
-
-initialCards.forEach((elem) => elementList.prepend(createElement(elem)));
 
 btnPopupAdd.addEventListener("click", () => {
   popupAddForm.reset();
@@ -111,3 +121,5 @@ popupList.forEach((element) => {
     }
   });
 });
+
+cardList.renderItems();
