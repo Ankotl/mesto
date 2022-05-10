@@ -51,8 +51,8 @@ const popupProfile = new PopupWithForm(popupProfileSelector, (evt) => {
   evt.preventDefault();
   const formData = popupProfile.getInputValues();
   userInfo.setUserInfo({
-    userName: formData.inputName,
-    userAbout: formData.inputAbout,
+    userName: formData.userName,
+    userAbout: formData.userAbout,
   });
   popupProfile.close();
 });
@@ -67,7 +67,6 @@ const popupAddCard = new PopupWithForm(popupAddSelector, (evt) => {
   const formData = popupAddCard.getInputValues();
   const element = { name: formData.inputTitle, link: formData.inputLink };
   cardList.addItem(createElement(element));
-  validateAddForm.toggleButtonState();
   popupAddCard.close();
 });
 popupAddCard.setEventListeners();
@@ -81,8 +80,7 @@ btnPopupAdd.addEventListener("click", () => {
 
 btnPopupEdit.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
-  popupEditForm.elements.inputName.value = userData.userName;
-  popupEditForm.elements.inputAbout.value = userData.userAbout;
+  popupProfile.setInputValues(userData);
   validateEditForm.resetValidation();
   popupProfile.open();
 });
