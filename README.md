@@ -17,7 +17,7 @@
 
 **GH-Pages**
 
-\*Ссылка на сайт https://ankotl.github.io/mesto/index.html
+- [Ссылка на сайт](https://ankotl.github.io/mesto)
 
 **В разработке**
 
