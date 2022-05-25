@@ -6,12 +6,14 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api";
 
 import {
   initialCards,
   validateObj,
   profileName,
   profileAbout,
+  profileAvatar,
   popupPictureSelector,
   popupProfileSelector,
   popupAddSelector,
@@ -23,7 +25,28 @@ import {
   elementTemplate,
 } from "../utils/constants.js";
 
-const userInfo = new UserInfo(profileName, profileAbout);
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-42",
+  token: "ef2a8db2-3c2c-4f24-b837-032ea2a5c911",
+});
+
+const userInfo = new UserInfo(profileName, profileAbout, profileAvatar);
+
+api
+  .getInitialData()
+  .then((res) => {
+    const [userData, cardData] = res;
+    userInfo.setUserInfo({
+      userName: userData.name,
+      userAbout: userData.about,
+    });
+    userInfo.setUserAvatar(userData.avatar);
+    userInfo.setUserId(userData._id);
+    cardList.renderItems(cardData);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const createElement = (elem) => {
   const card = new Card(elem, elementTemplate, () => {
@@ -37,7 +60,6 @@ popupPicture.setEventListeners();
 
 const cardList = new Section(
   {
-    items: initialCards,
     renderer: (elem) => {
       const cardElement = createElement(elem);
       cardList.addItem(cardElement);
@@ -45,7 +67,6 @@ const cardList = new Section(
   },
   elementList
 );
-cardList.renderItems();
 
 const popupProfile = new PopupWithForm(popupProfileSelector, (evt) => {
   evt.preventDefault();

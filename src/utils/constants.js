@@ -36,6 +36,7 @@ export const validateObj = {
 
 export const profileName = ".profile__name";
 export const profileAbout = ".profile__about";
+export const profileAvatar = ".profile__avatar";
 export const popupPictureSelector = ".popup_picture";
 export const popupProfileSelector = ".popup_edit";
 export const popupAddSelector = ".popup_add";

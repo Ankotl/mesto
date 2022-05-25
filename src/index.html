@@ -17,11 +17,18 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src="<%=require('./images/profile-avatar.jpg')%>"
-            alt="Аватар"
-            class="profile__avatar"
-          />
+          <button
+            class="profile__avatar-edit"
+            type="button"
+            title="Обновить аватар"
+          >
+            <img
+              src="<%=require('./images/profile-avatar.jpg')%>"
+              alt="Аватар"
+              class="profile__avatar"
+            />
+          </button>
+
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button
@@ -147,18 +154,88 @@
         ></button>
       </div>
     </section>
+    <section class="popup popup_confirm">
+      <div class="popup__container">
+        <form class="popup__form" name="editFormProfile" novalidate>
+          <h2 class="popup__title">Вы уверены?</h2>
+
+          <button
+            class="popup__btn-save popup__btn-save_confirm"
+            type="submit"
+            title="Да"
+            aria-label="Да"
+          >
+            Да
+          </button>
+        </form>
+        <button
+          class="popup__btn-close"
+          type="button"
+          title="Закрыть"
+          aria-label="Закрыть"
+        ></button>
+      </div>
+    </section>
+    <section class="popup popup_update-avatar">
+      <div class="popup__container">
+        <form class="popup__form" name="addFormElement" novalidate>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <fieldset class="popup__fieldset">
+            <input
+              class="popup__input"
+              type="url"
+              placeholder="Ссылка на картинку"
+              name="inputLink"
+              required
+              id="input-link"
+            />
+            <span class="popup__error input-link-error"></span>
+
+            <button
+              class="popup__btn-save"
+              type="submit"
+              title="Сохранить"
+              aria-label="Сохранить"
+            >
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+        <button
+          class="popup__btn-close"
+          type="button"
+          title="Закрыть"
+          aria-label="Закрыть"
+        ></button>
+      </div>
+    </section>
+    <section class="popup popup_picture">
+      <div class="popup__content">
+        <img src=" " alt="" class="popup__image" />
+        <p class="popup__caption"></p>
+        <button
+          class="popup__btn-close"
+          type="button"
+          title="Закрыть"
+          aria-label="Закрыть"
+        ></button>
+      </div>
+    </section>
     <template id="element">
       <li class="element">
         <div class="element__figure">
           <img class="element__image" src=" " alt="" />
           <div class="element__info">
             <h2 class="element__caption"></h2>
-            <button
-              class="element__btn-like"
-              type="button"
-              title="Нравится"
-              aria-label="Нравиться"
-            ></button>
+            <div class="element__like-block">
+              <button
+                class="element__btn-like"
+                type="button"
+                title="Нравится"
+                aria-label="Нравиться"
+              ></button>
+              <p class="element__like-count">0</p>
+            </div>
           </div>
         </div>
         <button
