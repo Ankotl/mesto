@@ -7,6 +7,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api";
+import PopupWithConfirm from "../components/PopupWithConfirm";
 
 import {
   validateObj,
@@ -17,6 +18,7 @@ import {
   popupProfileSelector,
   popupAddSelector,
   popupUpdateAvatarSelector,
+  popupConfirmSelector,
   btnPopupEdit,
   btnPopupAdd,
   btnPopupAvatar,
@@ -82,10 +84,19 @@ const createElement = (elem) => {
     },
     handlerTrashClick: (evt) => {
       const cardElement = evt.target.closest(".element");
-
-      api.deleteCard(card.getCardId()).then(() => {
-        cardElement.remove();
+      popupConfirm.setHandlerSubmit((evt) => {
+        evt.preventDefault();
+        api
+          .deleteCard(card.getCardId())
+          .then(() => {
+            cardElement.remove();
+            popupConfirm.close();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
+      popupConfirm.open();
     },
   });
 
@@ -108,11 +119,20 @@ const cardList = new Section(
 const popupProfile = new PopupWithForm(popupProfileSelector, (evt) => {
   evt.preventDefault();
   const formData = popupProfile.getInputValues();
-  userInfo.setUserInfo({
-    userName: formData.userName,
-    userAbout: formData.userAbout,
-  });
-  popupProfile.close();
+  const body = { name: formData.userName, about: formData.userAbout };
+  popupProfile.isLoading(true);
+  api
+    .updateUserInfo(body)
+    .then((data) => {
+      userInfo.setUserInfo({ userName: data.name, userAbout: data.about });
+      popupProfile.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupProfile.isLoading(false);
+    });
 });
 
 popupProfile.setEventListeners();
@@ -164,6 +184,9 @@ const popupUpdateAvatar = new PopupWithForm(
   }
 );
 popupUpdateAvatar.setEventListeners();
+
+const popupConfirm = new PopupWithConfirm(popupConfirmSelector);
+popupConfirm.setEventListeners();
 
 btnPopupAdd.addEventListener("click", () => {
   validateAddForm.resetValidation();
