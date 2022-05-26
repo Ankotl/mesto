@@ -24,6 +24,7 @@ import {
   btnPopupAvatar,
   popupEditForm,
   popupAddForm,
+  popupUpdateAvatarForm,
   elementList,
   elementTemplate,
 } from "../utils/constants.js";
@@ -185,6 +186,12 @@ const popupUpdateAvatar = new PopupWithForm(
 );
 popupUpdateAvatar.setEventListeners();
 
+const validateUpdateForm = new FormValidator(
+  popupUpdateAvatarForm,
+  validateObj
+);
+validateUpdateForm.enableValidation();
+
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector);
 popupConfirm.setEventListeners();
 
@@ -201,5 +208,6 @@ btnPopupEdit.addEventListener("click", () => {
 });
 
 btnPopupAvatar.addEventListener("click", () => {
+  validateUpdateForm.resetValidation();
   popupUpdateAvatar.open();
 });

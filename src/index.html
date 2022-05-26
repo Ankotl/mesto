@@ -152,7 +152,7 @@
     </section>
     <section class="popup popup_confirm">
       <div class="popup__container">
-        <form class="popup__form" name="editFormProfile" novalidate>
+        <form class="popup__form" novalidate>
           <h2 class="popup__title">Вы уверены?</h2>
 
           <button
@@ -174,7 +174,7 @@
     </section>
     <section class="popup popup_update-avatar">
       <div class="popup__container">
-        <form class="popup__form" name="addFormElement" novalidate>
+        <form class="popup__form" name="updateAvatarForm" novalidate>
           <h2 class="popup__title">Обновить аватар</h2>
           <fieldset class="popup__fieldset">
             <input
@@ -183,9 +183,9 @@
               placeholder="Ссылка на картинку"
               name="inputLink"
               required
-              id="input-link_avatar"
+              id="input-link-avatar"
             />
-            <span class="popup__error input-link_avatar-error"></span>
+            <span class="popup__error input-link-avatar-error"></span>
 
             <button
               class="popup__btn-save"

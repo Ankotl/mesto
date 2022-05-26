@@ -19,6 +19,9 @@ export const btnPopupEdit = document.querySelector(".profile__btn-edit");
 export const btnPopupAdd = document.querySelector(".profile__btn-add");
 export const popupEditForm = document.querySelector("[name=editFormProfile]");
 export const popupAddForm = document.querySelector("[name=addFormElement]");
+export const popupUpdateAvatarForm = document.querySelector(
+  "[name=updateAvatarForm]"
+);
 export const elementList = document.querySelector(".elements__list");
 export const elementTemplate = "#element";
 export const btnPopupAvatar = document.querySelector(".profile__avatar-edit");
