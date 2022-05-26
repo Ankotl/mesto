@@ -9,7 +9,6 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api";
 
 import {
-  initialCards,
   validateObj,
   profileName,
   profileAbout,
@@ -17,8 +16,10 @@ import {
   popupPictureSelector,
   popupProfileSelector,
   popupAddSelector,
+  popupUpdateAvatarSelector,
   btnPopupEdit,
   btnPopupAdd,
+  btnPopupAvatar,
   popupEditForm,
   popupAddForm,
   elementList,
@@ -142,6 +143,28 @@ popupAddCard.setEventListeners();
 const validateAddForm = new FormValidator(popupAddForm, validateObj);
 validateAddForm.enableValidation();
 
+const popupUpdateAvatar = new PopupWithForm(
+  popupUpdateAvatarSelector,
+  (evt) => {
+    evt.preventDefault();
+    const link = popupUpdateAvatar.getInputValues().inputLink;
+    popupUpdateAvatar.isLoading(true);
+    api
+      .updateAvatar({ avatar: link })
+      .then((data) => {
+        userInfo.setUserAvatar(data.avatar);
+        popupUpdateAvatar.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupUpdateAvatar.isLoading(false);
+      });
+  }
+);
+popupUpdateAvatar.setEventListeners();
+
 btnPopupAdd.addEventListener("click", () => {
   validateAddForm.resetValidation();
   popupAddCard.open();
@@ -152,4 +175,8 @@ btnPopupEdit.addEventListener("click", () => {
   popupProfile.setInputValues(userData);
   validateEditForm.resetValidation();
   popupProfile.open();
+});
+
+btnPopupAvatar.addEventListener("click", () => {
+  popupUpdateAvatar.open();
 });
