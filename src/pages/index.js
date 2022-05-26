@@ -49,9 +49,45 @@ api
   });
 
 const createElement = (elem) => {
-  const card = new Card(elem, elementTemplate, () => {
-    popupPicture.open(elem.name, elem.link);
+  const card = new Card({
+    data: elem,
+    userId: userInfo.getUserId(),
+    template: elementTemplate,
+    handlerCardClick: () => {
+      popupPicture.open(elem.name, elem.link);
+    },
+    handlerLikeClick: () => {
+      if (card.isLiked) {
+        api
+          .deleteLikeCard(card.getCardId())
+          .then((data) => {
+            card.unsetLike();
+            card.likesCountUpdate(data.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        api
+          .addLikeCard(card.getCardId())
+          .then((data) => {
+            card.setLike();
+            card.likesCountUpdate(data.likes);
+          })
+          .catch((err) => {
+            console.log(`ошибка ${err}`);
+          });
+      }
+    },
+    handlerTrashClick: (evt) => {
+      const cardElement = evt.target.closest(".element");
+
+      api.deleteCard(card.getCardId()).then(() => {
+        cardElement.remove();
+      });
+    },
   });
+
   return card.generateCard();
 };
 
@@ -62,7 +98,7 @@ const cardList = new Section(
   {
     renderer: (elem) => {
       const cardElement = createElement(elem);
-      cardList.addItem(cardElement);
+      cardList.addItemAppend(cardElement);
     },
   },
   elementList
@@ -87,8 +123,20 @@ const popupAddCard = new PopupWithForm(popupAddSelector, (evt) => {
   evt.preventDefault();
   const formData = popupAddCard.getInputValues();
   const element = { name: formData.inputTitle, link: formData.inputLink };
-  cardList.addItem(createElement(element));
-  popupAddCard.close();
+  popupAddCard.isLoading(true);
+  api
+    .addNewCard(element)
+    .then((card) => {
+      const cardElement = createElement(card);
+      cardList.addItemPrepend(cardElement);
+      popupAddCard.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupAddCard.isLoading(false);
+    });
 });
 popupAddCard.setEventListeners();
 const validateAddForm = new FormValidator(popupAddForm, validateObj);
