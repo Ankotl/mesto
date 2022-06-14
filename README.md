@@ -1,11 +1,16 @@
 # Проект: Место. Яндекс.Практикум
 
-### Стэк
+### [Открыть проект в браузере](https://ankotl.github.io/mesto)
 
-- HTML
-- CSS
-- Javascript
-- БЭМ
+#### Технологии
++ HTML5
++ CCS3
++ JavaScript (стандарт ES6)
++ ООП
++ Адаптивная верстка
++ Методология БЭМ
++ Webpack
+
 
 **О проекте**
 
@@ -15,12 +20,4 @@
 
 - [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-**GH-Pages**
 
-- [Ссылка на сайт](https://ankotl.github.io/mesto)
-
-**В разработке**
-
-Рефакторинг
-
----
